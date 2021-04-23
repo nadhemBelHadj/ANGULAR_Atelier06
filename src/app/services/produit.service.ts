@@ -42,7 +42,7 @@ export class ProduitService {
       }
 
     
-     consulterProdui(id: number): Observable<Produit> {
+     consulterProduit(id: number): Observable<Produit> {
         const url = `${this.apiURL}/${id}`;
         return this.http.get<Produit>(url);
         }
