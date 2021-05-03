@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  users: User[] = [{"id":1,"login":"admin","password":"123","roles":['ADMIN']},
-                   {"id":2,"login":"nadhem","password":"123","roles":['USER']} ];
+  users: User[] = [{"username":"admin","password":"123","roles":['ADMIN']},
+                   {"username":"nadhem","password":"123","roles":['USER']} ];
 
   public loggedUser:string;
   public isloggedIn: Boolean = false;
@@ -31,9 +31,9 @@ logout() {
   SignIn(user :User):Boolean{
     let validUser: Boolean = false;
     this.users.forEach((curUser) => {
-      if(user.login=== curUser.login && user.password==curUser.password) {
+      if(user.username=== curUser.username && user.password==curUser.password) {
         validUser = true;
-        this.loggedUser = curUser.login;
+        this.loggedUser = curUser.username;
         this.isloggedIn = true;
         this.roles = curUser.roles;
         localStorage.setItem('loggedUser',this.loggedUser);
@@ -57,9 +57,9 @@ logout() {
     this.getUserRoles(login);
   }
 
-  getUserRoles(login :string){    
+  getUserRoles(username :string){    
     this.users.forEach((curUser) => {
-      if( curUser.login == login) {
+      if( curUser.username == username) {
           this.roles = curUser.roles;
       }
     });
